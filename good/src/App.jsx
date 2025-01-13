@@ -3,17 +3,28 @@ import './App.css'
 
 const BulbContext = createContext();
 
-function App() {
+function BulbProvider({children}){
   const [bulbOn, setBulbOn] = useState(true);
 
-  return (
-    <>
+  return( 
+    <div>
       <BulbContext.Provider value={{
         bulbOn: bulbOn,
         setBulbOn: setBulbOn
       }}>
-        <Light />
+        {children}
       </BulbContext.Provider>
+    </div>
+  )
+}
+
+function App() {
+
+  return (
+    <>
+      <BulbProvider>
+        <Light />
+      </BulbProvider>
     </>
   )
 }
